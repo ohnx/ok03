@@ -45,10 +45,8 @@ main:
 */
 mov sp,#0x8000
 
-mov r12,#0x20 @ 32
+mov r12,#0x30 @ 48
 enable_loop:
-    sub r12,#0x1
-
     /* NEW
      * Use our new SetGpioFunction function to set the function of
      * GPIO port (r12) to 001 (binary)
@@ -62,15 +60,13 @@ enable_loop:
     .unreq pinFunc
 
     @ keep looping until we have enabled all GPIO pins
-    cmp r12,#0x0
+    sub r12,#0x1
     bne enable_loop
 
 loop$:
 
-mov r12,#0x20 @ 32
+mov r12,#0x30 @ 48
 turnon_loop:
-    sub r12,#0x1
-
     /* NEW
      * Use our new SetGpio function to set GPIO (r12) to high, causing the LED to turn 
      * on.
@@ -85,7 +81,7 @@ turnon_loop:
      .unreq pinVal
 
      @ keep looping until we have turned on all GPIO pins
-     cmp r12,#0x0
+     sub r12,#0x1
      bne turnon_loop
 
 /*
@@ -100,9 +96,8 @@ wait1$:
 	bne wait1$
 .unreq decr
 
-mov r12,#0x20 @ 32
+mov r12,#0x30 @ 48
 turnoff_loop:
-    sub r12,#0x1
     /* NEW
      * Use our new SetGpio function to set GPIO r12 to low, causing the LED to turn 
      * off.
@@ -116,7 +111,7 @@ turnoff_loop:
     .unreq pinVal
 
      @ keep looping until we have turned off all GPIO pins
-     cmp r12,#0x0
+     sub r12,#0x1
      bne turnon_loop
 
 /*

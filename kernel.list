@@ -51,45 +51,42 @@ Disassembly of section .text:
 
 00008084 <main>:
     8084:	e3a0d902 	mov	sp, #32768	; 0x8000
-    8088:	e3a0c020 	mov	ip, #32
+    8088:	e3a0c030 	mov	ip, #48	; 0x30
 
 0000808c <enable_loop>:
-    808c:	e24cc001 	sub	ip, ip, #1
-    8090:	e1a0000c 	mov	r0, ip
-    8094:	e3a01001 	mov	r1, #1
-    8098:	ebffffdb 	bl	800c <SetGpioFunction>
-    809c:	e35c0000 	cmp	ip, #0
-    80a0:	1afffff9 	bne	808c <enable_loop>
+    808c:	e1a0000c 	mov	r0, ip
+    8090:	e3a01001 	mov	r1, #1
+    8094:	ebffffdc 	bl	800c <SetGpioFunction>
+    8098:	e24cc001 	sub	ip, ip, #1
+    809c:	1afffffa 	bne	808c <enable_loop>
 
-000080a4 <loop$>:
-    80a4:	e3a0c020 	mov	ip, #32
+000080a0 <loop$>:
+    80a0:	e3a0c030 	mov	ip, #48	; 0x30
 
-000080a8 <turnon_loop>:
-    80a8:	e24cc001 	sub	ip, ip, #1
-    80ac:	e1a0000c 	mov	r0, ip
-    80b0:	e3a01001 	mov	r1, #1
-    80b4:	ebffffe2 	bl	8044 <SetGpio>
-    80b8:	e35c0000 	cmp	ip, #0
-    80bc:	1afffff9 	bne	80a8 <turnon_loop>
-    80c0:	e3a0083f 	mov	r0, #4128768	; 0x3f0000
+000080a4 <turnon_loop>:
+    80a4:	e1a0000c 	mov	r0, ip
+    80a8:	e3a01001 	mov	r1, #1
+    80ac:	ebffffe4 	bl	8044 <SetGpio>
+    80b0:	e24cc001 	sub	ip, ip, #1
+    80b4:	1afffffa 	bne	80a4 <turnon_loop>
+    80b8:	e3a0083f 	mov	r0, #4128768	; 0x3f0000
 
-000080c4 <wait1$>:
-    80c4:	e2400001 	sub	r0, r0, #1
-    80c8:	e3300000 	teq	r0, #0
-    80cc:	1afffffc 	bne	80c4 <wait1$>
-    80d0:	e3a0c020 	mov	ip, #32
+000080bc <wait1$>:
+    80bc:	e2400001 	sub	r0, r0, #1
+    80c0:	e3300000 	teq	r0, #0
+    80c4:	1afffffc 	bne	80bc <wait1$>
+    80c8:	e3a0c030 	mov	ip, #48	; 0x30
 
-000080d4 <turnoff_loop>:
-    80d4:	e24cc001 	sub	ip, ip, #1
-    80d8:	e1a0000c 	mov	r0, ip
-    80dc:	e3a01000 	mov	r1, #0
-    80e0:	ebffffd7 	bl	8044 <SetGpio>
-    80e4:	e35c0000 	cmp	ip, #0
-    80e8:	1affffee 	bne	80a8 <turnon_loop>
-    80ec:	e3a0083f 	mov	r0, #4128768	; 0x3f0000
+000080cc <turnoff_loop>:
+    80cc:	e1a0000c 	mov	r0, ip
+    80d0:	e3a01000 	mov	r1, #0
+    80d4:	ebffffda 	bl	8044 <SetGpio>
+    80d8:	e24cc001 	sub	ip, ip, #1
+    80dc:	1afffff0 	bne	80a4 <turnon_loop>
+    80e0:	e3a0083f 	mov	r0, #4128768	; 0x3f0000
 
-000080f0 <wait2$>:
-    80f0:	e2400001 	sub	r0, r0, #1
-    80f4:	e3300000 	teq	r0, #0
-    80f8:	1afffffc 	bne	80f0 <wait2$>
-    80fc:	eaffffe8 	b	80a4 <loop$>
+000080e4 <wait2$>:
+    80e4:	e2400001 	sub	r0, r0, #1
+    80e8:	e3300000 	teq	r0, #0
+    80ec:	1afffffc 	bne	80e4 <wait2$>
+    80f0:	eaffffea 	b	80a0 <loop$>

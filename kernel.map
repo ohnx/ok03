@@ -23,18 +23,18 @@ LOAD build/main.o
  .init          0x0000000000008000        0x4 build/main.o
                 0x0000000000008000                _start
 
-.text           0x0000000000008004       0xfc
+.text           0x0000000000008004       0xf0
  *(.text)
  .text          0x0000000000008004       0x80 build/gpio.o
                 0x0000000000008004                GetGpioAddress
                 0x000000000000800c                SetGpioFunction
                 0x0000000000008044                SetGpio
- .text          0x0000000000008084       0x7c build/main.o
+ .text          0x0000000000008084       0x70 build/main.o
 
-.data           0x0000000000008100        0x0
+.data           0x00000000000080f4        0x0
  *(.data)
- .data          0x0000000000008100        0x0 build/gpio.o
- .data          0x0000000000008100        0x0 build/main.o
+ .data          0x00000000000080f4        0x0 build/gpio.o
+ .data          0x00000000000080f4        0x0 build/main.o
 
 /DISCARD/
  *(*)
